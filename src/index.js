@@ -1,6 +1,8 @@
 const express = require('express');
 
 module.exports = function hermioneStaticServer(hermione, opts) {
+    const { httpPort, filesDir } = opts;
+
     if (!httpPort) {
         throw new Error(`"httpPort" option was not specified in hermione-static-server config`);
     }
