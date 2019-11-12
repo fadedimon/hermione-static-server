@@ -1,4 +1,9 @@
+const path = require('path');
 const express = require('express');
+
+function log(message) {
+    console.log(`${new Date().toLocaleTimeString()} — ${message}`);
+}
 
 module.exports = function hermioneStaticServer(hermione, opts) {
     const { httpPort, filesDir } = opts;
@@ -13,23 +18,31 @@ module.exports = function hermioneStaticServer(hermione, opts) {
 
     hermione.on(hermione.events.RUNNER_START, function(runner) {
         return new Promise((resolve) => {
+            if (opts._server) {
+                log('Static server is already started');
+                return resolve();
+            }
+
             const server = express();
             const { httpPort, filesDir } = opts;
+            const staticDir = path.normalize([process.cwd(), filesDir].join('/'));
 
-            opts._server = server;
+            server.use('/', express.static(staticDir));
 
-            server.use('/', express.static(__dirname + filesDir));
-            server.listen(httpPort, () => {
-                console.log('webserver started');
+            const httpServer = server.listen(httpPort, () => {
+                log(`Static server started on port "${httpPort}", serving files from "${filesDir}"`);
                 resolve();
             });
+
+            opts._server = server;
+            opts._httpServer = httpServer;
         });
     });
 
     hermione.on(hermione.events.RUNNER_END, function(runner) {
-        if (opts._server) {
-            opts._server.close();
-            console.log('webserver stopped');
+        if (opts.httpServer) {
+            opts.httpServer.close();
+            log('Static server stopped');
         }
     });
 };
