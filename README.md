@@ -2,6 +2,20 @@
 
 Static serving server for screenshots testing with Hermione
 
+#### Installation:
+
+Using yarn
+
+```
+yarn add hermione-static-server --dev
+```
+
+Using npm
+
+```
+npm install hermione-static-server --save-dev
+```
+
 #### Configuration:
 
 To configure plugin you should provide two required options: `httpPort` and `filesDir`.
