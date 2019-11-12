@@ -1,6 +1,6 @@
 {
     "name": "hermione-static-server",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Static serving server for screenshots testing with Hermione",
     "main": "src/index.js",
     "repository": "https://github.com/fadedimon/hermione-static-server.git",
