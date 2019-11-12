@@ -1,4 +1,4 @@
-import { express } from 'express';
+const express = require('express');
 
 export default function hermioneStaticServer(hermione, { httpPort, filesDir }) {
     if (!httpPort) {
