@@ -1,6 +1,6 @@
 const express = require('express');
 
-export default function hermioneStaticServer(hermione, { httpPort, filesDir }) {
+module.exports = function hermioneStaticServer(hermione, { httpPort, filesDir }) {
     if (!httpPort) {
         throw new Error(`"httpPort" option was not specified in hermione-static-server config`);
     }
@@ -29,4 +29,4 @@ export default function hermioneStaticServer(hermione, { httpPort, filesDir }) {
             console.log('webserver stopped');
         }
     });
-}
+};
