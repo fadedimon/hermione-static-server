@@ -2,11 +2,11 @@
 
 Static serving server for screenshots testing with Hermione
 
-Configuration:
+#### Configuration:
 
 To configure plugin you should provide two required options: `httpPort` and `filesDir`.
 
-Example:
+#### Example:
 
 ```(js)
 // .hermione.conf.js
